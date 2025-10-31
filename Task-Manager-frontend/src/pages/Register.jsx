@@ -39,23 +39,23 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen grid place-items-center bg-slate-900 px-4">
-      <form onSubmit={onSubmit} className="w-full max-w-sm bg-slate-800 p-6 rounded-2xl shadow">
-        <h1 className="text-2xl font-semibold text-white mb-4">Create account</h1>
+    <div className="min-h-screen grid place-items-center bg-white px-4">
+      <form onSubmit={onSubmit} className="w-full h-100 flex flex-col justify-center max-w-sm bg-white p-6 rounded-2xl shadow border-2 border-cyan-500">
+        <h1 className="text-2xl font-semibold text-black mb-6">Create account</h1>
         {err && <div className="mb-3 text-sm text-red-400">{err}</div>}
 
-        <label className="block text-slate-300 text-sm mb-1">Email</label>
+        <label className="block text-black text-sm mb-1">Email</label>
         <input
-          className="w-full mb-3 rounded-lg bg-slate-700 px-3 py-2 text-white outline-none"
+          className="w-full mb-4 rounded-lg bg-slate-700 px-3 py-2 text-white outline-none"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
 
-        <label className="block text-slate-300 text-sm mb-1">Password</label>
+        <label className="block text-black text-sm mb-1">Password</label>
         <input
-          className="w-full mb-4 rounded-lg bg-slate-700 px-3 py-2 text-white outline-none"
+          className="w-full mb-6 rounded-lg bg-slate-700 px-3 py-2 text-white outline-none"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -69,7 +69,7 @@ export default function Register() {
           {loading ? "Creating..." : "Register"}
         </button>
 
-        <p className="text-slate-400 text-sm mt-4">
+        <p className="text-black text-sm mt-4">
           Already have an account? <Link to="/login" className="text-cyan-400 hover:underline">Log in</Link>
         </p>
       </form>
