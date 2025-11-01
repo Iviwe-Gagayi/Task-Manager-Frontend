@@ -73,7 +73,7 @@ export default function NewTaskForm({ onTaskCreated, onClose }) {
 
   return (
     // 1. Using a softer shadow instead of the heavy border
-    <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
+    <form onSubmit={handleSubmit} className="  w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
       
       {/* 2. Using a placeholder instead of a label */}
       <div className="mb-4">

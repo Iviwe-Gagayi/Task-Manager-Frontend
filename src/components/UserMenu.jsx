@@ -32,7 +32,7 @@ export default function UserMenu() {
 
   return (
   
-    <div className="relative" ref={menuRef}> 
+    <div className="relative " ref={menuRef}> 
       {/* The User Icon Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)} 

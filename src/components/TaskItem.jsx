@@ -16,68 +16,80 @@ export default function TaskItem({ task, onDelete, isDeleting, onUpdateStatus, i
     }
   };
 
+  // ... (imports and getStatusColor function) ...
+
   return (
-   
+    // 1. Make the card a column by default, and a row on 'sm' screens
     <div className="
-      w-full max-w-4xl 
-      bg-white p-4 rounded-lg shadow-md 
-      flex items-center 
-      transition-all hover:shadow-lg hover:scale-108 duration-300 cursor-pointer
+      w-full max-w-2xl 
+      bg-white 
+      p-4 rounded-lg shadow-md 
+      flex flex-col sm:flex-row sm:items-center 
+      transition-all duration-300
+      hover:shadow-lg
     ">
       
-      {/*Task Description  */}
-      <div className="flex-grow">
+      {/* 2. Description (always takes up full width on top) */}
+      <div className="flex-grow w-full">
         <h3 className={`
           text-lg font-medium
           ${task.status === 'completed' 
-            ? 'line-through text-gray-400' 
-            : 'text-gray-800'}
+            ? 'line-through text-gray-400 ' 
+            : 'text-black '}
         `}>
           {task.description}
         </h3>
       </div>
       
-       {/*Status */}
-      <div className="w-50 text-center flex-shrink-0">
-        <button
-          onClick={() => onUpdateStatus(task._id, task.status)}
-          disabled={isUpdating} 
-          className="w-full focus:outline-none"
-        >
-          <span 
-            className={`
-              px-4 py-1 rounded-full text-m font-semibold 
-              ${getStatusColor(task.status)}
-              transition-all duration-200 
-              ${isUpdating 
-                ? 'opacity-50 cursor-not-allowed' 
-                : 'hover:opacity-80 cursor-pointer' 
-              }
-            `}
+      {/* 3. This wrapper holds the controls */}
+      <div className="
+        flex items-center w-full mt-4 sm:mt-0 sm:w-auto
+      ">
+        {/* 4. Status Button (grows to fill space on mobile) */}
+        <div className="flex-grow sm:flex-grow-0 sm:w-36 text-center">
+          <button
+            onClick={() => onUpdateStatus(task._id, task.status)}
+            disabled={isUpdating} 
+            className="w-full sm:w-auto focus:outline-none"
           >
+            <span 
+              className={`
+                inline-block w-full sm:w-auto
+                px-4 py-1 rounded-full text-m font-semibold
+                ${getStatusColor(task.status)}
+                transition-all duration-200
+                ${isUpdating 
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'hover:opacity-80 cursor-pointer' 
+                }
+              `}
+            >
+              {isUpdating ? 'Saving...' : task.status}
+            </span>
+          </button>
+        </div>
         
-            {isUpdating ? 'Saving...' : task.status}
-          </span>
-        </button>
-      </div>
-      
-      {/*Delete Button  */}
-      <div className="flex-shrink-0 ml-4 ">
-        <button
-          onClick={() => onDelete(task._id)}
-          className="
-            cursor-pointer text-gray-400 p-2 rounded-full
-            hover:text-red-500 hover:bg-red-100
-            transition-all duration-200
-          "
-          aria-label="Delete task" 
-        >
-         {isDeleting ? (
-            <FaSpinner className="animate-spin" size={18} />
-          ) : (
-            <FaTrash size={18} />
-          )}
-        </button>
+        {/* 5. Delete Button (stays on the far right) */}
+        <div className="flex-shrink-0 ml-4">
+          <button
+            onClick={() => onDelete(task._id)}
+            disabled={isDeleting}
+            className="
+              text-gray-400  p-2 rounded-full
+              hover:text-red-500 hover:bg-red-100
+              transition-all duration-200
+              disabled:text-gray-300
+              disabled:cursor-not-allowed
+            "
+            aria-label="Delete task" 
+          >
+            {isDeleting ? (
+              <FaSpinner className="animate-spin" size={18} />
+            ) : (
+              <FaTrash size={18} />
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );

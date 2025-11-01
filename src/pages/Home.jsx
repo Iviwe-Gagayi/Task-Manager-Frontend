@@ -121,11 +121,14 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-gray-100 p-8">
 
+       {/* Header Bar */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">Your Tasks</h1>
-          <UserMenu />
+          <h1 className="text-4xl font-bold text-black ">Your Tasks</h1>
         </div>
 
+        <div className="fixed top-4 right-4 flex items-center z-30">
+          <UserMenu />
+        </div>
         {/* Task List */}
         <div className="flex flex-col items-center gap-4">
           {tasks.map(task => (
@@ -168,7 +171,7 @@ export default function Home() {
 
         <div 
           className={`
-            fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md p-4 z-40
+            fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md p-4 z-50
             transition-all duration-500 ease-in-out
             ${isFormOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
           `}
@@ -186,7 +189,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-white p-4">
    
-      <div className="fixed top-6 right-8 z-50">
+      <div className="fixed top-6 right-8 z-30">
         <UserMenu />
       </div>
 
