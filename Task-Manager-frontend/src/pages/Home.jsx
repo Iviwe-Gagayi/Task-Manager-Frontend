@@ -78,26 +78,12 @@ export default function Home() {
        <FaCircleUser className='w-10 h-10 absolute right-0 top-0 m-3 text-cyan-500 hover:scale-110 transition-all duration-300 hover:text-cyan-600 cursor-pointer'/>
        </button>
         <h1 className="text-4xl font-semibold mb-10">No tasks yet</h1>
-       <button
-          onClick={() => setIsFormOpen(!isFormOpen)}
-          className="
-            w-16 h-16 
-            bg-cyan-500 
-            rounded-full 
-            flex justify-center items-center
-            text-white
-            cursor-pointer
-            hover:bg-cyan-600
-            hover:scale-110
-            transition-all
-            duration-300
-            shadow-lg
-          "
-        >
-          {/* This will smoothly rotate the plus icon */}
-          <div className={`transition-transform duration-300 ${isFormOpen ? 'rotate-45' : ''}`}>
-            <FaPlus size={24} />
-          </div>
+        <button>
+        <div className="cursor-pointer w-25 h-25 bg-cyan-500 rounded-full flex justify-center items-center hover:bg-cyan-600 transition-all hover:scale-110 duration-300 ">
+        <span className='text-white text-7xl font-bold leading-none relative bottom-1.5 right-.5'>
+            +
+        </span>
+        </div>
         </button>
         <p1 className="mt-5 text-lg"> Create task</p1>
          </div>
