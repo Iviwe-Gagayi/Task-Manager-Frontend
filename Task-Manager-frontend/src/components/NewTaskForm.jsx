@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { useAuth } from '../context/AuthContext'; // <-- Adjust path if needed
+import { useAuth } from '../context/AuthContext'; 
 
-// We receive the two functions as props from the Home component
+
 export default function NewTaskForm({ onTaskCreated, onClose }) {
   // Form state
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('pending');
   
-  // Logic state
+
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -17,7 +17,7 @@ export default function NewTaskForm({ onTaskCreated, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // 1. Check that description is filled (as you planned)
+    
     if (!description) {
       setError('Description is required.');
       return;
@@ -27,16 +27,16 @@ export default function NewTaskForm({ onTaskCreated, onClose }) {
     setError('');
     setSuccessMessage('');
 
-    // 2. Fill in the details for the POST request
+    
     const newTask = {
-      title: 'Default Task Title', // As you requested
+      title: 'Default Task Title', 
       description: description,
       status: status,
-      // The 'user' will be added by your backend from the token
     };
 
     try {
-      const response = await fetch('https://task-manager-rp21.onrender.com/tasks', { // <-- !! Replace with your API URL
+     
+      const response = await fetch('https://task-manager-rp21.onrender.com/tasks', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,21 +50,19 @@ export default function NewTaskForm({ onTaskCreated, onClose }) {
       }
 
       const createdTask = await response.json();
-
-      // 3. Show "task created" message
       setSuccessMessage('Task created!');
       
-      // 4. Pass the new task back up to the Home component
+     
       onTaskCreated(createdTask);
 
-      // 5. Clear the form fields
+    
       setDescription('');
       setStatus('pending');
 
-      // 6. Slide the menu back up after 2 seconds
+     
       setTimeout(() => {
-        onClose(); // This calls setIsFormOpen(false) in the Home component
-        setSuccessMessage(''); // Clear the message for next time
+        onClose(); 
+        setSuccessMessage('');
       }, 2000);
 
     } catch (err) {
@@ -75,7 +73,8 @@ export default function NewTaskForm({ onTaskCreated, onClose }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 bg-white shadow-md rounded-b-lg">
+   
+    <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white shadow-lg rounded-lg">
       {/* Description Field */}
       <div className="mb-4">
         <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
@@ -90,7 +89,7 @@ export default function NewTaskForm({ onTaskCreated, onClose }) {
         />
       </div>
 
-      {/* Status Field */}
+  
       <div className="mb-4">
         <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">
           Status
@@ -107,7 +106,7 @@ export default function NewTaskForm({ onTaskCreated, onClose }) {
         </select>
       </div>
 
-      {/* Submit Button & Messages */}
+     
       <div className="flex items-center justify-between">
         <button
           type="submit"
@@ -123,3 +122,4 @@ export default function NewTaskForm({ onTaskCreated, onClose }) {
     </form>
   );
 }
+
